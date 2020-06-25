@@ -1,0 +1,14 @@
+$theme-colors: ( "bootstrap": #563d7c, "simpleform": #00617f );
+
+ // Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+
+ body {
+    padding-top: 60px;
+  }
+  @media (max-width: 979px) {
+    body {
+      padding-top: 0px;
+    }
+  }

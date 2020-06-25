@@ -1,0 +1,37 @@
+<%# <div class="jumbotron">
+  <h1 class="display-4">Find your flights</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </p>
+</div> %>
+
+ <%= form_with url: :flights, method: :get, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label(:departure, "From: ") %>
+    <%= f.select(:departure, options_for_select(@airport_options, params[:departure]), {}, { class: "form-control" }) %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:arrival, "To: ") %>
+    <%= f.select(:arrival, options_for_select(@airport_options, params[:arrival]), {}, { class: "form-control" }) %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:passenger_num, "Passengers: ") %>
+    <%= f.select(:passenger_num, options_for_select(1..10), {}, { class: "form-control" }) %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:departure_date, "Date: ") %>
+    <%= f.select(:departure_date, options_for_select(@date_options, params[:departure_date]), {}, { class: "form-control" }) %>
+  </div>
+
+  <%= f.submit "Search", class: "btn btn-primary mt-3" %>
+<% end %>
+
+<br />
+
+<% if @results %>
+  <div class="container-fluid flight-results">
+    <%= render 'results' %>
+  </div>
+<% end %>

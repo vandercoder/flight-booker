@@ -25,8 +25,7 @@
 ### Initial Model Layout
 #### Table Design
 flight:
-airline, departing_id, departure_time, boarding_time, 
-arrival_id, arrival_time, flight_time, stops, gate
+airline, departure_id, arrival_id, flight_time, stops, gate
 
 airport:
 airport_name, airport_code, city, country, latitude, longitude, timezone
@@ -62,3 +61,30 @@ class Passenger < ActiveRecord::Base
 
 ```
 
+### Thoughts
+Initially, this project instructs you to use a new primary key for your Flight-Airport association. 
+Namely airports should be identified by its 'code' instead of Rails' default id. But after some 
+research, I find that people don't really recommend this since it goes against Rails' principles
+https://stackoverflow.com/questions/750413/altering-the-primary-key-in-rails-to-be-a-string
+
+Decided to try out bootstrap for css in this framework. Right off the bat, i ran into trouble with
+navbar overlays https://stackoverflow.com/questions/10336194/top-nav-bar-blocking-top-content-of-the-page
+
+Gave a try on simple-forms since everyone in rails seems to recommend it. But i couldn't get it to work
+for my search form just yet, so I switched back to vanilla by using form_for or form_with
+
+Stumble upon elasticsearch when i was trying to build a search form. 
+
+I was confused about how to store durations on a database. Tried to use the time dataype but when I try to
+input "01:15:00" it adds a date upfront for some reason(?). In any case, I found a solution to instead store 
+time only as seconds and store it as an integer. Then you can perform calculations on it if you want to show 
+into hours and minutes. This way it is supposed to be faster.
+https://stackoverflow.com/questions/1051465/using-a-duration-field-in-a-rails-model
+
+Got into the datetime problem. It really is harder than it looks. I try not to handle timezones at
+the moment. Ran into some trouble with date handling. Turns out it's a lot of hassle handling datetime
+variables, especially if you only ever need to call one (the date or time). Better to 
+just store them separately, flight_date and flight_time. actually no ended up using datetime
+seems i need to make use more model callbacks
+
+# HOW TO SHOW RESULTS

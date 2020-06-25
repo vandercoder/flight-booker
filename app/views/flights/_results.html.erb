@@ -1,0 +1,40 @@
+<% if @results.empty? %>
+  <p> No results found </p>
+
+<% else %>  
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Airline</th>
+        <th scope="col">Departure</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">Arrival</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">Duration</th>
+        <th scope="col">stops</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @results.each do |flight| %>
+        <tr>
+          <td><%= flight.airline %></td>
+          <td><%= flight.departure.code %></td>
+          <td><%= flight.departure.city %></td>
+          <td><%= flight.departure_date %></td>
+          <td><%= flight.departure_time %></td>
+          <td><%= flight.arrival.code %></td>
+          <td><%= flight.arrival.city %></td>
+          <td><%= flight.arrival_date %></td>
+          <td><%= flight.arrival_time %></td>
+          <td><%= flight.flight_time %></td>
+          <td><%= flight.stops %></td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+<% end %>
