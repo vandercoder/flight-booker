@@ -1,4 +1,5 @@
 # Flight Booker 
+Ongoing.
 
 ### Pages
     1. Homepage
@@ -73,18 +74,18 @@ navbar overlays https://stackoverflow.com/questions/10336194/top-nav-bar-blockin
 Gave a try on simple-forms since everyone in rails seems to recommend it. But i couldn't get it to work
 for my search form just yet, so I switched back to vanilla by using form_for or form_with
 
-Stumble upon elasticsearch when i was trying to build a search form. 
+Stumble upon elasticsearch when i was trying to build a search form. Might be worth 
+to take a look in the future
 
 I was confused about how to store durations on a database. Tried to use the time dataype but when I try to
-input "01:15:00" it adds a date upfront for some reason(?). In any case, I found a solution to instead store 
+input "01:15:00" it adds a date upfront for some reason. In any case, I found a solution to instead store 
 time only as seconds and store it as an integer. Then you can perform calculations on it if you want to show 
-into hours and minutes. This way it is supposed to be faster.
+into hours and minutes. This way it is supposed to be faster. (You can store in mins, but I prefer to be precise)
 https://stackoverflow.com/questions/1051465/using-a-duration-field-in-a-rails-model
 
-Got into the datetime problem. It really is harder than it looks. I try not to handle timezones at
-the moment. Ran into some trouble with date handling. Turns out it's a lot of hassle handling datetime
-variables, especially if you only ever need to call one (the date or time). Better to 
-just store them separately, flight_date and flight_time. actually no ended up using datetime
-seems i need to make use more model callbacks
+Got into the datetime problem. I was having trouble calling only the date from the date time variable 
+in the controller. I figured, who not just have them stored separately, like flight_date and flight_time.
+But I managed to find the solution anyway, I needed only to put some methods
+on the model file.
 
 # HOW TO SHOW RESULTS
